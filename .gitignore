@@ -119,8 +119,6 @@ dmypy.json
 # Pickle files
 *.pkl
 
-# CSV files
-*.csv
 
 # Exe files
 *.exe
