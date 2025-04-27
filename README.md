@@ -2,12 +2,6 @@
 
 This project is a Movie Recommendation System that uses Streamlit for the frontend. It allows users to select a movie and get recommendations based on the selected movie.
 
-## Features
-
-- Movie selection from a dropdown menu
-- Display of movie posters and genres
-- Recommendations based on the selected movie
-
 ## Installation
 
 1. Clone the repository:
