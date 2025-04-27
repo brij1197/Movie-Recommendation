@@ -44,6 +44,7 @@ def fetch_poster(movie_id):
     data=response.json()
     return "https://image.tmdb.org/t/p/w500" + data.get('poster_path')
 
+load_data()
 
 with open('movies.pkl', 'rb') as f:
     movies_df = pd.read_pickle(f)
