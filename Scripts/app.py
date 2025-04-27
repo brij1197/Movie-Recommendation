@@ -13,12 +13,23 @@ def check_and_prepare_data():
     if missing_files:
         st.warning("Generating required data files. This may take a few minutes...")
         try:
-            subprocess.run([sys.executable, 'prepare_data.py'],check=True)
-        except subprocess.CalledProcessError as e:
+            python_exe = sys.executable
+            script_path = os.path.abspath('prepare-data.py')
+            process = subprocess.run(
+                f'"{python_exe}" "{script_path}"',
+                shell=True,
+                capture_output=True,
+                text=True
+            )
+            if process.returncode != 0:
+                st.error("Error during data generation:")
+                st.error(f"stdout: {process.stdout}")
+                st.error(f"stderr: {process.stderr}")
+                st.stop()
+            else:
+                st.success("Data generation complete!")
+        except Exception as e:
             st.error(f"Error generating data: {e}")
-            st.stop()
-        except:
-            st.error(f"Unexpected error: {e}")
             st.stop()
 
 env_file=find_dotenv('.env')
