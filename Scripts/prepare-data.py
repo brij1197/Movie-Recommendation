@@ -3,7 +3,7 @@ from nbconvert.preprocessors import ExecutePreprocessor
 import os
 
 def run_notebook():
-    notebook_path="movie-recommendation.ipynb"
+    notebook_path=os.path.join(os.path.dirname(__file__),"movie-recommendation.ipynb")
     
     if not os.path.exists(notebook_path):
         raise FileNotFoundError(f"Notebook {notebook_path} not found")
