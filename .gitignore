@@ -117,7 +117,7 @@ dmypy.json
 .streamlit/
 
 # Pickle files
-#*.pkl
+*.pkl
 
 
 # Exe files
