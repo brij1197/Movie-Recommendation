@@ -1,12 +1,18 @@
 import pandas as pd
 import streamlit as st
 import requests
-from dotenv import load_dotenv,find_dotenv
+from dotenv import load_dotenv
 import os
 import subprocess
 import sys
 
-def check_and_prepare_data():
+load_dotenv()
+
+st.set_page_config(page_title='Movie Recommendation System', page_icon='🎬', initial_sidebar_state='auto')
+st.title('Movie Recommendation System')
+
+@st.cache_resource
+def load_data():
     required_files = ['movies.pkl', 'similarity.pkl']
     missing_files= [f for f in required_files if not os.path.exists(f)]
     
@@ -33,18 +39,11 @@ def check_and_prepare_data():
             st.error(f"Error generating data: {e}")
             st.stop()
 
-env_file=find_dotenv('.env')
-load_dotenv(env_file)
-
 def fetch_poster(movie_id):
     response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={os.environ.get("TMDB_API_KEY")}&language=en-US')
     data=response.json()
     return "https://image.tmdb.org/t/p/w500" + data.get('poster_path')
 
-st.set_page_config(page_title='Movie Recommendation System', page_icon='🎬', initial_sidebar_state='auto')
-st.title('Movie Recommendation System')
-
-check_and_prepare_data()
 
 with open('movies.pkl', 'rb') as f:
     movies_df = pd.read_pickle(f)

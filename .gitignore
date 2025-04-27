@@ -131,3 +131,10 @@ share/
 
 # Etc files
 etc/
+
+# Environment
+.streamlit/secrets.toml
+
+# Jupyter
+.ipynb_checkpoints/
+
