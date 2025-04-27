@@ -14,7 +14,7 @@ def check_and_prepare_data():
         st.warning("Generating required data files. This may take a few minutes...")
         try:
             python_exe = sys.executable
-            script_path = os.path.abspath('../Scripts/prepare-data.py')
+            script_path = os.path.join(os.path.dirname(__file__),'prepare-data.py')
             print(script_path)
             process = subprocess.run(
                 f'"{python_exe}" "{script_path}"',
