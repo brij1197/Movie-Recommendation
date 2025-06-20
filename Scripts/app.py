@@ -44,11 +44,16 @@ def fetch_poster(movie_id):
     data=response.json()
     return "https://image.tmdb.org/t/p/w500" + data.get('poster_path')
 
+load_data()
 
-with open('movies.pkl', 'rb') as f:
+script_dir = os.path.dirname(os.path.abspath(__file__))
+movie_path = os.path.join(script_dir, "movies.pkl")
+similarity_path = os.path.join(script_dir, "similarity.pkl")
+    
+with open(movie_path, 'rb') as f:
     movies_df = pd.read_pickle(f)
     
-with open('similarity.pkl', 'rb') as f:
+with open(similarity_path, 'rb') as f:
     similarity = pd.read_pickle(f)
     
 def movie_recommend(movie):
